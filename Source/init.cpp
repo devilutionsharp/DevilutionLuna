@@ -7,7 +7,6 @@
 #include <config.h>
 #include <string>
 #include <vector>
-#include <lua.h>
 
 #if (defined(_WIN64) || defined(_WIN32)) && !defined(__UWP__)
 #include <find_steam_game.h>
@@ -58,6 +57,7 @@ std::optional<MpqArchive> hfvoice_mpq;
 std::optional<MpqArchive> devilutionx_mpq;
 std::optional<MpqArchive> lang_mpq;
 std::optional<MpqArchive> font_mpq;
+lua_State *mainLuaState;
 
 namespace {
 
@@ -147,6 +147,8 @@ void init_cleanup()
 	devilutionx_mpq = std::nullopt;
 
 	NetClose();
+
+	lua_close(mainLuaState);
 }
 
 void LoadCoreArchives()
@@ -218,11 +220,21 @@ void LoadGameArchives()
 	}
 }
 
+void InitLua()
+{
+	mainLuaState = luaL_newstate();
+	if (mainLuaState == NULL)
+		app_fatal("%s", _("Unable to init Lua").c_str());
+
+	luaL_openlibs(mainLuaState);
+}
+
 void init_create_window()
 {
 	if (!SpawnWindow(PROJECT_NAME))
 		app_fatal("%s", _("Unable to create main window").c_str());
 	dx_init();
+	InitLua();
 	gbActive = true;
 #ifndef USE_SDL1
 	SDL_DisableScreenSaver();

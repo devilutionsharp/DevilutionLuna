@@ -9,6 +9,12 @@
 #include "mpq/mpq_reader.hpp"
 #include "utils/attributes.h"
 
+extern "C" {
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
+}
+
 namespace devilution {
 
 extern bool gbActive;
@@ -28,11 +34,13 @@ extern std::optional<MpqArchive> hfvoice_mpq;
 extern std::optional<MpqArchive> font_mpq;
 extern std::optional<MpqArchive> lang_mpq;
 extern std::optional<MpqArchive> devilutionx_mpq;
+extern lua_State* mainLuaState;
 
 void init_cleanup();
 void LoadCoreArchives();
 void LoadLanguageArchive();
 void LoadGameArchives();
+void InitLua();
 void init_create_window();
 void MainWndProc(uint32_t Msg);
 WNDPROC SetWindowProc(WNDPROC NewProc);

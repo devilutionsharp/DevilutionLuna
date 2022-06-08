@@ -1,5 +1,6 @@
 include(functions/genex)
 include(functions/set_relative_file_macro)
+include(FindLua)
 
 # This function is equivalent to `add_library` but applies DevilutionX-specific
 # compilation flags to it.
