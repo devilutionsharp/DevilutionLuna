@@ -199,7 +199,7 @@ if(DISCORD_INTEGRATION)
 endif()
 
 add_devilutionx_library(libdevilutionx OBJECT ${libdevilutionx_SRCS})
-target_include_directories(libdevilutionx PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(libdevilutionx PUBLIC ${CMAKE_CURRENT_BINARY_DIR} ${LUA_INCLUDE_DIR})
 
 # Use file GENERATE instead of configure_file because configure_file
 # does not support generator expressions.
@@ -234,6 +234,7 @@ target_link_libraries(libdevilutionx PUBLIC
   libsmackerdec
   simpleini
   hoehrmann_utf8
+  ${LUA_LIBRARIES}
 )
 
 if(NOT NONET)
@@ -261,4 +262,4 @@ foreach(path ${DEVILUTIONX_PLATFORM_SUBDIRECTORIES})
   add_subdirectory(${path})
 endforeach()
 
-target_link_libraries(libdevilutionx PUBLIC ${DEVILUTIONX_PLATFORM_LINK_LIBRARIES})
+target_link_libraries(libdevilutionx PUBLIC ${DEVILUTIONX_PLATFORM_LINK_LIBRARIES} ${LUA_LIBRARIES})

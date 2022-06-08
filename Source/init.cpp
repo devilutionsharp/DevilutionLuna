@@ -7,6 +7,7 @@
 #include <config.h>
 #include <string>
 #include <vector>
+#include <lua.h>
 
 #if (defined(_WIN64) || defined(_WIN32)) && !defined(__UWP__)
 #include <find_steam_game.h>

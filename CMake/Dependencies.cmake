@@ -19,6 +19,9 @@ else()
   add_subdirectory(3rdParty/bzip2)
 endif()
 
+dependency_options("lua" DEVILUTIONX_SYSTEM_LUA ON DEVILUTION_STATIC_LUA)
+find_package(Lua REQUIRED)
+
 if(EMSCRIPTEN)
   # We use `USE_PTHREADS=1` here to get a version of SDL2 that supports threads.
   emscripten_system_library("SDL2" SDL2::SDL2 USE_SDL=2 USE_PTHREADS=1)

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
+
 if(POLICY CMP0092)
   cmake_policy(SET CMP0092 NEW)
 endif()
@@ -529,7 +530,7 @@ if(CPACK AND (APPLE OR BUILD_ASSETS_MPQ OR SRC_DIST))
     endif()
 
   elseif(APPLE)
-    set(CPACK_PACKAGE_FILE_NAME "devilutionx")
+    set(CPACK_PACKAGE_FILE_NAME "devilutionluna")
     set(CPACK_DMG_DISABLE_APPLICATIONS_SYMLINK "ON")
     set(CPACK_STRIP_FILES TRUE)
     set(CPACK_GENERATOR "DragNDrop")
