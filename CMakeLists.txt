@@ -230,7 +230,7 @@ elseif(UWP_LIB)
   add_custom_target(${BIN_TARGET})  # we only need libdevilutionx
 else()
   add_executable(${BIN_TARGET}
-    WIN32
+    #WIN32
     MACOSX_BUNDLE
     Source/main.cpp
     Packaging/windows/devilutionx.exe.manifest

@@ -34,7 +34,9 @@ extern std::optional<MpqArchive> hfvoice_mpq;
 extern std::optional<MpqArchive> font_mpq;
 extern std::optional<MpqArchive> lang_mpq;
 extern std::optional<MpqArchive> devilutionx_mpq;
+
 extern lua_State* mainLuaState;
+extern std::string currentMod;
 
 void init_cleanup();
 void LoadCoreArchives();

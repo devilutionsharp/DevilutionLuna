@@ -58,6 +58,7 @@ std::optional<MpqArchive> devilutionx_mpq;
 std::optional<MpqArchive> lang_mpq;
 std::optional<MpqArchive> font_mpq;
 lua_State *mainLuaState;
+std::string currentMod = "base";
 
 namespace {
 
@@ -231,6 +232,8 @@ void InitLua()
 
 void init_create_window()
 {
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "First Launch", _("devilutionX is starting for the first time.\nIf you encounter any problems, please refer to the README file.\n\nFor information about modding please visit sergi4ua.com/dxluna").c_str(), NULL);
+
 	if (!SpawnWindow(PROJECT_NAME))
 		app_fatal("%s", _("Unable to create main window").c_str());
 	dx_init();

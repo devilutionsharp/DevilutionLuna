@@ -753,10 +753,11 @@ void TalkToGirl(Player &player, Towner &girl)
 	}
 }
 
-const TownerData TownersData[] = {
+// Diablo dream come true
+std::vector<TownerData> TownersData;
 	// clang-format off
 	// type         position    dir                   init           talk
-	{ TOWN_SMITH,   { 62, 63 }, Direction::SouthWest, InitSmith,     TalkToBlackSmith  },
+	/*{ TOWN_SMITH,   { 62, 63 }, Direction::SouthWest, InitSmith,     TalkToBlackSmith  },
 	{ TOWN_HEALER,  { 55, 79 }, Direction::SouthEast, InitHealer,    TalkToHealer      },
 	{ TOWN_DEADGUY, { 24, 32 }, Direction::North,     InitTownDead,  TalkToDeadguy     },
 	{ TOWN_TAVERN,  { 55, 62 }, Direction::SouthWest, InitBarOwner,  TalkToBarOwner    },
@@ -769,16 +770,16 @@ const TownerData TownersData[] = {
 	{ TOWN_COW,     { 56, 14 }, Direction::NorthWest, InitCows,      TalkToCow         },
 	{ TOWN_COW,     { 59, 20 }, Direction::North,     InitCows,      TalkToCow         },
 	{ TOWN_COWFARM, { 61, 22 }, Direction::SouthWest, InitCowFarmer, TalkToCowFarmer   },
-	{ TOWN_FARMER,  { 62, 16 }, Direction::South,     InitFarmer,    TalkToFarmer      },
-	{ TOWN_GIRL,    { 77, 43 }, Direction::South,     InitGirl,      TalkToGirl        },
+	{ TOWN_FARMER,  { 62, 16 }, Direction::South,     InitFarmer,    TalkToFarmer      },*/
+	//{ TOWN_GIRL,    { 99, 99 }, Direction::South,     InitGirl,      TalkToGirl        },/*
 	// clang-format on
-};
+//*///};
 
 } // namespace
 
 Towner Towners[NUM_TOWNERS];
 
-/** Contains the data related to quest gossip for each towner ID. */
+/** Contains the data related to quest gossip for each towner ID.*/
 _speech_id QuestDialogTable[NUM_TOWNER_TYPES][MAXQUESTS] = {
 	// clang-format off
 	//                 Q_ROCK,       Q_MUSHROOM,  Q_GARBUD,  Q_ZHAR,    Q_VEIL,     Q_DIABLO,   Q_BUTCHER,   Q_LTBANNER,   Q_BLIND,     Q_BLOOD,     Q_ANVIL,      Q_WARLORD,    Q_SKELKING,  Q_PWATER,      Q_SCHAMB,   Q_BETRAYER,  Q_GRAVE,     Q_FARMER,  Q_GIRL,    Q_TRADER,  Q_DEFILER, Q_NAKRUL,  Q_CORNSTN, Q_JERSEY

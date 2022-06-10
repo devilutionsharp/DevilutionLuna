@@ -3,6 +3,9 @@
 #include <SDL.h>
 #include <fmt/core.h>
 #include <fmt/ranges.h>
+#ifdef WIN32
+#include <iostream>
+#endif
 
 #ifdef USE_SDL1
 #include "sdl2_to_1_2_backports.h"
@@ -66,6 +69,9 @@ template <typename... Args>
 void LogVerbose(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
+#ifdef _WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+#endif
 	SDL_LogVerbose(static_cast<int>(category), "%s", str.c_str());
 }
 
@@ -80,6 +86,9 @@ void LogDebug(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogDebug(static_cast<int>(category), "%s", str.c_str());
+	#ifdef _WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>
@@ -93,6 +102,9 @@ void LogInfo(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogInfo(static_cast<int>(category), "%s", str.c_str());
+	#ifdef WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>
@@ -106,6 +118,9 @@ void LogWarn(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogWarn(static_cast<int>(category), "%s", str.c_str());
+	#ifdef WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>
@@ -119,6 +134,9 @@ void LogError(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogError(static_cast<int>(category), "%s", str.c_str());
+	#ifdef WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>
@@ -132,6 +150,9 @@ void LogCritical(LogCategory category, const char *fmt, Args &&...args)
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogCritical(static_cast<int>(category), "%s", str.c_str());
+	#ifdef WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>
@@ -145,6 +166,9 @@ void LogMessageV(LogCategory category, LogPriority priority, const char *fmt, Ar
 {
 	auto str = detail::format(fmt, std::forward<Args>(args)...);
 	SDL_LogMessageV(static_cast<int>(category), static_cast<SDL_LogPriority>(priority), "%s", str.c_str());
+	#ifdef WIN32
+	std::cout << "%s" << str.c_str() << std::endl;
+	#endif
 }
 
 template <typename... Args>

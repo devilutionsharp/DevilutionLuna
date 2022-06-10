@@ -5,6 +5,7 @@
 #include "utils/file_util.h"
 #include "utils/log.hpp"
 #include "utils/sdl_ptrs.h"
+#include "init.h"
 
 #ifdef __IPHONEOS__
 #include "platform/ios/ios_paths.h"
@@ -61,7 +62,10 @@ const std::string &PrefPath()
 {
 	if (!prefPath) {
 #ifndef __IPHONEOS__
-		prefPath = FromSDL(SDL_GetPrefPath("diasurgical", "devilution"));
+		//prefPath = FromSDL(SDL_GetPrefPath("diasurgical", "devilution"));
+		std::string lunaPath = SDL_GetBasePath() + currentMod;
+		prefPath = lunaPath + "/";
+
 		if (FileExistsAndIsWriteable("diablo.ini")) {
 			prefPath = std::string("./");
 		}
@@ -76,7 +80,8 @@ const std::string &ConfigPath()
 {
 	if (!configPath) {
 #ifndef __IPHONEOS__
-		configPath = FromSDL(SDL_GetPrefPath("diasurgical", "devilution"));
+		std::string lunaPath = SDL_GetBasePath() + currentMod;
+		configPath = lunaPath + "/";
 		if (FileExistsAndIsWriteable("diablo.ini")) {
 			configPath = std::string("./");
 		}
@@ -93,7 +98,7 @@ const std::string &AssetsPath()
 #if __EMSCRIPTEN__
 		assetsPath.emplace("assets/");
 #else
-		assetsPath.emplace(FromSDL(SDL_GetBasePath()) + "assets/");
+		assetsPath.emplace(FromSDL(SDL_GetBasePath()) + currentMod + "/assets/");
 #endif
 	return *assetsPath;
 }
